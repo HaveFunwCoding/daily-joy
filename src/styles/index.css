@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Quicksand:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #D97706;
+  --color-primary-dark: #B45309;
+  --color-secondary: #F59E0B;
+  --color-bg: #FFFDF5;
+  --color-card: #FEF3C7;
+  --color-card-border: #FDE68A;
+  --color-text: #292524;
+  --color-text-muted: #78716C;
+  --color-destructive: #DC2626;
+
+  --font-heading: 'ZCOOL XiaoWei', serif;
+  --font-body: 'Quicksand', system-ui, sans-serif;
+}
