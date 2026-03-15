@@ -4,13 +4,22 @@ import JoyCard from '../components/JoyCard'
 import FloatingButton from '../components/FloatingButton'
 import { storage } from '../utils/storage'
 import { calculateStreak } from '../utils/streak'
-import { getTodayDate } from '../utils/dates'
+import { getEffectiveDate, getTodayDate } from '../utils/dates'
 
 export default function Home() {
   const records = storage.getRecords()
   const today = getTodayDate()
   const streak = useMemo(() => calculateStreak(records, today), [records, today])
   const checkedIn = !!records[today]
+
+  const yesterday = (() => {
+    const d = new Date(); d.setDate(d.getDate() - 1)
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`
+  })()
+  const hasYesterdayRecord = !!records[yesterday]
+  const effectiveDate = getEffectiveDate(hasYesterdayRecord)
+  const isGracePeriod = effectiveDate !== today
+  const yesterdayMissed = isGracePeriod && !records[effectiveDate]
 
   const sortedDates = Object.keys(records).sort().reverse()
 
@@ -23,6 +32,13 @@ export default function Home() {
         </h1>
         <StreakBar streak={streak} />
       </div>
+
+      {yesterdayMissed && (
+        <div className="mx-4 mt-3 bg-secondary/10 border border-secondary/30 rounded-2xl p-3 text-center">
+          <p className="text-primary-dark text-sm font-medium">昨天忘记记录了？</p>
+          <p className="text-text-muted text-xs mt-1">现在还来得及补上昨天的小确幸</p>
+        </div>
+      )}
 
       {/* Card Flow */}
       <div className="px-4 mt-4 space-y-4">
