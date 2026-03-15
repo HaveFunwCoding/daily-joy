@@ -28,7 +28,7 @@ export default function Record() {
   )
   const [done, setDone] = useState(false)
   const [quote, setQuote] = useState<Quote | null>(null)
-  const [newBadges, setNewBadges] = useState<Badge[]>([])
+  const [_newBadges, setNewBadges] = useState<Badge[]>([])
 
   const isEditing = !!existingRecord
 
