@@ -1,14 +1,5 @@
 import type { Badge } from '../types'
-
-const ICON_MAP: Record<string, string> = {
-  sprout: '🌱',
-  flame: '🔥',
-  star: '⭐',
-  medal: '🏅',
-  diamond: '💎',
-  crown: '👑',
-  trophy: '🏆',
-}
+import { BADGE_ICON_MAP } from '../utils/icons'
 
 interface Props {
   badges: Badge[]
@@ -29,7 +20,7 @@ export default function BadgeGrid({ badges }: Props) {
             }`}
           >
             <div className={`text-3xl mb-2 ${unlocked ? '' : 'grayscale'}`}>
-              {ICON_MAP[badge.icon] ?? '🎯'}
+              {BADGE_ICON_MAP[badge.icon] ?? '🎯'}
             </div>
             <div className="text-xs font-medium text-text text-center">
               {badge.name}
