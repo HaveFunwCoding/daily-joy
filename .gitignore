@@ -27,4 +27,6 @@ dist-ssr
 .superpowers
 docs/
 design-system/
-*.md
+task_plan.md
+progress.md
+findings.md
